@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEAD ZONE ONLINE</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="brand">☠ DEAD ZONE <span>ONLINE</span></div><div id="connection" class="pill">연결 중...</div></header>
+<main>
+<section id="entry" class="panel">
+  <h1>건물 탈출 작전</h1><p class="muted">방을 만들거나 방 코드로 참가하세요.</p>
+  <label>닉네임<input id="name" maxlength="18" placeholder="닉네임"></label>
+  <div class="actions"><button id="create">방 만들기</button></div>
+  <div class="joinrow"><input id="roomCode" maxlength="5" placeholder="방 코드"><button id="join">참가하기</button></div>
+  <p id="entryError" class="error"></p>
+</section>
+
+<section id="game" class="hidden">
+  <div class="topline panel"><div><small>ROOM CODE</small><strong id="roomId">-----</strong></div><div><small>라운드</small><strong id="round">-</strong></div><div><small>단계</small><strong id="phase">대기실</strong></div></div>
+  <div id="announcement" class="announcement">참가자를 기다리는 중입니다.</div>
+  <div class="columns">
+    <section class="panel">
+      <h2>내 비밀 정보</h2>
+      <div class="secret"><small>내 역할</small><strong id="role">대기 중</strong><p id="mission"></p><small id="mates"></small></div>
+      <div class="notice" id="privateNotice"></div>
+      <h2>건물 지도</h2><div id="zones" class="zones"></div>
+      <h2>미션</h2><div id="missions" class="missionlist"></div>
+      <div id="finalBox" class="hidden"><h3>최종 탈출 코드</h3><input id="finalAnswer" placeholder="4자리 코드"><button id="submitFinal">코드 제출</button></div>
+    </section>
+    <section class="panel">
+      <div class="row"><h2>참가자</h2><span id="count" class="muted"></span></div>
+      <div id="players" class="players"></div>
+      <div id="hostControls" class="hidden"><button id="start">게임 시작</button><button id="end" class="danger">게임 종료</button></div>
+      <div id="actions" class="hidden">
+        <h3>행동</h3>
+        <div class="row wrap">
+          <select id="target"></select>
+          <button id="attack" class="danger">암살</button>
+          <button id="protect">보호 지정</button>
+          <button id="vote">투표</button>
+          <button id="meeting">긴급 회의</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <section class="panel chatpanel">
+    <div class="row"><h2>실시간 채팅</h2><select id="channel"><option value="public">전체 채팅</option><option value="mafia">마피아 비밀 채팅</option></select></div>
+    <div id="messages" class="messages"></div>
+    <div class="joinrow"><input id="chatInput" placeholder="메시지를 입력하세요"><button id="send">전송</button></div>
+  </section>
+</section>
+<div id="toast" class="toast"></div>
+</main>
+<footer>DEAD ZONE ONLINE · 게임은 허가된 안전한 공간에서만 진행하세요.</footer>
+<script src="/socket.io/socket.io.js"></script><script src="app.js"></script>
+</body></html>
